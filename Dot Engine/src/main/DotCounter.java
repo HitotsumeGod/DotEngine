@@ -4,15 +4,30 @@ import java.util.Random;
 
 public class DotCounter extends Thread {
 	
+	public DotCounter() {
+		
+		monitor = Monitor.getInstance();
+		duh = DotList.getInstance();
+		
+	}
+	
+	private Monitor monitor;
+	private DotList duh;
 	private static int count;
+	private static int margin;
 	
 	public void run() {
 		
+		try {
+			monitor.wait();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		Random rand = new Random();
-		DotList duh = DotList.getInstance();
 		int max = 3;
 		int min = 1;
 		while (true) {
+			margin = 0;
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
@@ -23,8 +38,32 @@ public class DotCounter extends Thread {
 				for (Dot d : duh) {
 					
 					count++;
+					margin++;
 					
 				}
+				
+			}
+			if (margin > 5) {
+				System.out.println("PANICKING !!!");
+				panicMode();
+			}
+			System.out.println(count);
+		}
+		
+	}
+	
+	private void panicMode() {
+		
+		while (true) {
+			
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			for (Dot d : duh) {
+				
+				count++;
 				
 			}
 			System.out.println(count);
