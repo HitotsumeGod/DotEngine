@@ -5,13 +5,23 @@ import java.util.Random;
 public class DotCounter extends Thread {
 	
 	private static int count;
+	Random rand;
+	DotList duh;
+	int max;
+	int min;
+	
+	public DotCounter() {
+		
+		
+		rand = new Random();
+		duh = DotList.getInstance();
+		max = 3;
+		min = 1;
+		
+	}
 	
 	public void run() {
-		
-		Random rand = new Random();
-		DotList duh = DotList.getInstance();
-		int max = 3;
-		int min = 1;
+
 		while (true) {
 			try {
 				Thread.sleep(500);
@@ -25,7 +35,7 @@ public class DotCounter extends Thread {
 					count++;
 					
 				}
-				
+		
 			}
 			System.out.println(count);
 		}
