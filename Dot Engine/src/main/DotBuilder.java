@@ -29,6 +29,7 @@ public class DotBuilder extends Thread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			System.out.println("Operation completed!");
 			
 		}
 		

@@ -6,6 +6,7 @@ public class DotCounter extends Thread {
 
 	private static int margin;
 	private static int count;
+	private static int size;
 	Random rand;
 	DotList duh;
 	int max;
@@ -16,8 +17,21 @@ public class DotCounter extends Thread {
 		
 		rand = new Random();
 		duh = DotList.getInstance();
+		size = duh.size();
 		max = 3;
 		min = 1;
+		
+	}
+	
+	private boolean changeCheck() {
+		
+		if (duh.size() > size) {
+			
+			size = duh.size();
+			return true;
+			
+		}
+		return false;
 		
 	}
 	
@@ -25,11 +39,12 @@ public class DotCounter extends Thread {
 		
 		while (true) {
 			margin = 0;
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			if (changeCheck()) {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			if ((rand.nextInt((max - min) + 1) + min) == 1) {
 				
 				for (Dot d : duh) {
@@ -45,6 +60,7 @@ public class DotCounter extends Thread {
 				panicMode();
 			}
 			System.out.println(count);
+			}
 		}
 		
 	}
