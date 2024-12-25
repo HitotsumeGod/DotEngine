@@ -18,10 +18,12 @@ public class DotCounter extends Thread {
 	
 	public void run() {
 		
+		synchronized(monitor) {
 		try {
 			monitor.wait();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
 		}
 		Random rand = new Random();
 		int max = 3;
@@ -56,6 +58,13 @@ public class DotCounter extends Thread {
 		
 		while (true) {
 			
+			synchronized(monitor) {
+				try {
+					monitor.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 			try {
 				Thread.sleep(200);
 			} catch (InterruptedException e) {

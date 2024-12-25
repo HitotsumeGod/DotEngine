@@ -23,10 +23,12 @@ public class DotBuilder extends Thread {
 		while (true) {
 			
 			try {
+				synchronized(monitor) {
 				Dot d = new Dot();
 				duh.add(d);
 				monitor.notify();
 				Thread.sleep(rand.nextInt((max - min) + 1) + min);
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
