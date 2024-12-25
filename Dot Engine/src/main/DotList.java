@@ -8,7 +8,7 @@ class DotList extends ArrayList<Dot> {
 
 	private DotList() {}
 
-	private static final DotList instance = new DotList();
+	private static DotList instance = new DotList();
 	
 	public static DotList getInstance() {
 		

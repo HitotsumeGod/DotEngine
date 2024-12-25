@@ -3,31 +3,26 @@ package main;
 import java.util.Random;
 
 public class DotCounter extends Thread {
+
+	private static int margin;
+	private static int count;
+	Random rand;
+	DotList duh;
+	int max;
+	int min;
 	
 	public DotCounter() {
 		
-		monitor = Monitor.getInstance();
+		
+		rand = new Random();
 		duh = DotList.getInstance();
+		max = 3;
+		min = 1;
 		
 	}
 	
-	private Monitor monitor;
-	private DotList duh;
-	private static int count;
-	private static int margin;
-	
 	public void run() {
 		
-		synchronized(monitor) {
-		try {
-			monitor.wait();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		}
-		Random rand = new Random();
-		int max = 3;
-		int min = 1;
 		while (true) {
 			margin = 0;
 			try {
@@ -43,7 +38,7 @@ public class DotCounter extends Thread {
 					margin++;
 					
 				}
-				
+		
 			}
 			if (margin > 5) {
 				System.out.println("PANICKING !!!");
@@ -58,13 +53,6 @@ public class DotCounter extends Thread {
 		
 		while (true) {
 			
-			synchronized(monitor) {
-				try {
-					monitor.wait();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
 			try {
 				Thread.sleep(200);
 			} catch (InterruptedException e) {
