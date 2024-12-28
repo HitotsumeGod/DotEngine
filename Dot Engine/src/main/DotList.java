@@ -4,15 +4,25 @@ import java.util.ArrayList;
 
 class DotList extends ArrayList<Dot> {
 	
-	private static final long serialVersionUID = 1L;
+	private static final DotList instance = new DotList();
 
 	private DotList() {}
-
-	private static DotList instance = new DotList();
 	
 	public static DotList getInstance() {
 		
 		return instance;
+		
+	}
+	
+	public synchronized void addDot(Dot d) {
+		
+		this.add(d);
+		
+	}
+	
+	public synchronized int getSize() {
+		
+		return this.size();
 		
 	}
 	

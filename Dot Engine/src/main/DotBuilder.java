@@ -24,12 +24,15 @@ public class DotBuilder extends Thread {
 			
 			try {
 				Dot d = new Dot();
-				duh.add(d);
+				duh.addDot(d);
+				System.out.println("Operation completed!");
+				synchronized(DotCounter.getInstance()) {
+					DotCounter.getInstance().notify();
+				}
 				Thread.sleep(rand.nextInt((max - min) + 1) + min);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println("Operation completed!");
 			
 		}
 		

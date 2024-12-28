@@ -5,7 +5,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		DotBuilder db = new DotBuilder();
-		DotCounter dc = new DotCounter();
+		DotCounter dc = DotCounter.getInstance();
 		db.start();
 		dc.start();
 		
