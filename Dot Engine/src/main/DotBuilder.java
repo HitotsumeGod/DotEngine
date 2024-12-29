@@ -4,19 +4,10 @@ import java.util.Random;
 
 public class DotBuilder extends Thread {
 	
-	Random rand;
-	DotList duh;
-	int max;
-	int min;
-	
-	public DotBuilder() {
-
-		rand = new Random();
-		duh = DotList.getInstance();
-		max = 5000;
-		min = 1500;
-		
-	}
+	private static Random rand = new Random();
+	private static final DotList duh = DotList.getInstance();
+	private int max = 5000;
+	private int min = 1500;
 	
 	public void run() {
 		

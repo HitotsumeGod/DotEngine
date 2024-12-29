@@ -3,7 +3,8 @@ package main;
 public class DotCounter extends Thread {
 	
 	private final static DotCounter instance = new DotCounter();
-	private static int count;
+	private static int total;
+	private static final DotList duh = DotList.getInstance();
 	
 	public void run() {
 		
@@ -16,10 +17,10 @@ public class DotCounter extends Thread {
 			System.out.println("Did not wait!!!");
 			System.exit(0);
 		}
-				count++;
-				System.out.println(count + " dots present");
-			}
+			total = duh.size();
+			System.out.println(total + " dots present");
 		}
+	}
 	
 	public static DotCounter getInstance() {
 		
