@@ -16,7 +16,6 @@ public class DotBuilder extends Thread {
 			try {
 				Dot d = new Dot();
 				duh.addDot(d);
-				System.out.println("Operation completed!");
 				synchronized(DotCounter.getInstance()) {
 					DotCounter.getInstance().notify();
 				}
